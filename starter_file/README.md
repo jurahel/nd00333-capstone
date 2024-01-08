@@ -25,7 +25,7 @@ The AutoML experiment has a 78.39% accuracy while the HyperDrive experiment gave
 
 3. **Compute Cluster:** Set up a CPU compute cluster for model training.
 
-4. **Dataset Registration:** Register the Kaggle dataset as "diabetes_data_set" in the workspace and retrieve it later in the ML experiment.
+4. **Dataset Registration:** Register the Kaggle dataset as "diabetes" in the workspace and retrieve it later in the ML experiment.
 
 5. **Experiment Execution:**
    - Load the workspace, dataset, and compute cluster.
@@ -76,7 +76,7 @@ We can get the RunID from the provided notebook or simply look in the model sect
 ![](screenshots/model_run_ids.png)
 
 ### Closer Look at the best model
-The voting ensemble consists of 9 models with different preprocessing steps (scalers and normalizers) followed by various models. In the screenshot we see Random Forests,, Logistic Regression, XGB Models, LightGBM and Extreme Random Forests. All their classifications are weighted and combined for the final prediction. We see that the first ensemble part consisting of the 'StandardScalerWrapper' and 'RandomForest' has a model weight of roughly 0.077.
+The voting ensemble consists of 9 models with different preprocessing steps (scalers and normalizers) followed by various models. In the screenshot we see Random Forests, Logistic Regression, XGB Models, LightGBM and Extreme Random Forests. All their classifications are weighted and combined for the final prediction. We see that the first ensemble part consisting of the `StandardScalerWrapper` and `RandomForest` has a model weight of roughly 0.077.
 ![](screenshots/automl_best_model_details.png)
 
 The model consists
@@ -131,7 +131,7 @@ service.wait_for_deployment(show_output=True)
 ```
 ![](screenshots/auto_ml_deploy_succeeded.png)
 
-The deployment finished successfully and we see the endpoint is healthy.
+The deployment finished successfully and we see the endpoint is healthy. Instead of testing the deployment from within the notebook, the code can also be shipped to a separate file as done in the previous project.
 
 #### Test the model
 In order to test the model we copy the code from the ´Consume´ of a deployed model. There we choose the python code and get everything we need to test our model. 

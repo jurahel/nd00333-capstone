@@ -104,11 +104,11 @@ In configuring the HyperDrive experiment, I utilized the RandomParameterSampling
 To enhance resource utilization further, an early termination policy was incorporated into the experiment submission. BanditPolicy was employed with parameters evaluation_interval=2 and slack_factor=0.1, serving as an early stopping policy to automatically terminate underperforming and delayed runs. The Bandit Policy concludes runs if the primary metric falls outside the specified slack factor compared to the highest-performing run, contributing to improved computational efficiency.
 
 ### Results
-The best performing model has a 74.4% accuracy rate with --C = 50 and --max_iter = 50. 
+The best performing model has a 77.08% accuracy rate with --C = 1 and --max_iter = 50. 
 
-#### `RunDetails` widget screenshot of the best model
+#### `RunDetails` widget screenshot of the best hyperdrive model
 ![](screenshots/hd_run_widget.png)
-
+![](screenshots/hd_best_model.png)
 #### Best model run id screenshot
 As before, we take a look at the registered models to get the `RunID`
 ![](screenshots/model_run_ids.png)

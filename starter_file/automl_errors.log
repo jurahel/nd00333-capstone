@@ -1,0 +1,12 @@
+2024-01-08 08:39:29.149 - INFO - 28944 - azureml.train.automl._local_managed_utils.is_docker_installed:354 - Docker is installed with Docker version 20.10.25+azure-2, build b82b9f3a0e763304a250531cb9350aa6d93723c9
+.
+2024-01-08 08:39:29.152 - INFO - 28944 - azureml.train.automl.automlconfig._start_execution:231 - Submitting remote.
+2024-01-08 08:40:24.212 - INFO - 28944 - azureml.train.automl._local_managed_utils.is_docker_installed:354 - Docker is installed with Docker version 20.10.25+azure-2, build b82b9f3a0e763304a250531cb9350aa6d93723c9
+.
+2024-01-08 08:40:24.221 - INFO - 28944 - azureml.train.automl.automlconfig._start_execution:231 - Submitting remote.
+2024-01-08 09:10:58.015 - INFO - 36995 - azureml.train.automl._local_managed_utils.is_docker_installed:354 - Docker is installed with Docker version 20.10.25+azure-2, build b82b9f3a0e763304a250531cb9350aa6d93723c9
+.
+2024-01-08 09:10:58.023 - INFO - 36995 - azureml.train.automl.automlconfig._start_execution:231 - Submitting remote.
+2024-01-08 09:18:19.672 - INFO - 37885 - azureml.train.automl._local_managed_utils.is_docker_installed:354 - Docker is installed with Docker version 20.10.25+azure-2, build b82b9f3a0e763304a250531cb9350aa6d93723c9
+.
+2024-01-08 09:18:19.680 - INFO - 37885 - azureml.train.automl.automlconfig._start_execution:231 - Submitting remote.

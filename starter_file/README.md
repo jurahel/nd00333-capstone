@@ -107,27 +107,22 @@ To enhance resource utilization further, an early termination policy was incorpo
 The best performing model has a 74.4% accuracy rate with --C = 50 and --max_iter = 50. 
 
 #### `RunDetails` widget screenshot of the best model
-![](Screenshots/hd_run_dtl_p1.png)
-
-![](Screenshots/hd_run_dtl_p2.png)
-
-![](Screenshots/hd_run_dtl_p3.png)
-
-![](Screenshots/hd_run_dtl_p4.png)
+![](screenshots/hd_run_widget.png)
 
 #### Best model run id screenshot
-![](Screenshots/hd-best-run-id.png)
+As before, we take a look at the registered models to get the `RunID`
+![](screenshots/model_run_ids.png)
 
 
 ### How to improve the project in the future:
-In refining the experiment, I recommend exploring the impact of regularization by trying a uniform range between 1 and 5 for the '--C' parameter. This will provide insights into the overall improvement in performance and the model's generalization capability. Additionally, consider extending the range for '--max_iter' to cover values such as 100 and 150, assessing how tuning the number of iterations affects the model's performance.
+In enhancing the experiment, consider delving into the impact of regularization by experimenting with a uniform range between 1 and 5 for the '--C' parameter. This exploration aims to unveil insights into the overall enhancement of performance and the model's ability to generalize. Additionally, broaden the scope for the '--max_iter' parameter, encompassing values such as 100 and 150, to evaluate how fine-tuning the number of iterations influences the model's performance.
 
-To diversify the experimentation, contemplate incorporating XGBoost and LightGBM models into the mix. Explore a broader range of hyperparameter options for these models to fine-tune their performance. This can offer a more comprehensive understanding of the models' behavior under various configurations.
+To diversify the experimentation approach, contemplate introducing XGBoost and LightGBM models. Explore an extended range of hyperparameter options for these models to refine their performance, providing a more in-depth understanding of their behavior across diverse configurations.
 
-For early termination policies, experiment with Median stopping and Truncation selection. Median stopping terminates runs based on the running averages of primary metrics, computing averages across all training runs and eliminating the worse-performing runs. This strategy can help improve efficiency by focusing resources on more promising configurations. Evaluate the effectiveness of these policies in enhancing the overall efficiency and effectiveness of the experiment.
+In terms of early termination policies, experiment with both Median stopping and Truncation selection. Median stopping concludes runs based on the running averages of primary metrics, calculating averages across all training runs and removing the less-performing ones. This strategic approach aids in improving efficiency by concentrating resources on more promising configurations. Assess the efficacy of these policies in enhancing the overall efficiency and effectiveness of the experiment.
 
 ## Model Deployment
-The AutoML experiment has a 78% accuracy while the HyperDrive experiment gave a 77%. The AutoML model exceeded the HyperDrive performance. Hence was registered as the best model and deployed as a web service. The application insights was enabled.
+ The AutoML model exceeded the HyperDrive performance, hence we deploy it as a web service. The application insights was enabled.
 
 Also, we have created inference configuration and edited deploy configuration settings for the deployment. The inference configuration and settings explain the set up of the web service that will include the deployed model. Environment settings and scoring.py script file should be passed the InferenceConfig. The deployed model was configured in Azure Container Instance(ACI) with cpu_cores and memory_gb parameters initialized as 1. 
 
@@ -146,19 +141,14 @@ service = Model.deploy(workspace=ws,
                       )
 service.wait_for_deployment(show_output=True)
 ```
+![](screenshots/auto_ml_deploy_succeeded.png)
 
-#### Best Model screenshot
-![](Screenshots/automl-run-detl-p1.png)
+#### Test the model
+In order to test the model we copy the code from the ´Consume´ of a deployed model. There we choose the python code and get everything we need to test our model. 
 
-![](Screenshots/automl-run-detl-p2.png)
+![](screenshots/deploy_snippet.png)
 
-![](Screenshots/deployed-model.png)
-
-![](Screenshots/deployed-model-healthy.png)
-
-![](Screenshots/deployed-enable-insights.png)
-
-A two sets of test records were passed to the endpoint to predict the result and use the service. The test data payload was passed to an instance of the endpoint model named "service". The prediction result was [1, 0] which indicates that only the first patient has diabetes. 
+Instead of using just zeros for the data to pass, we adapt the data parameter. The test data payload was passed to an instance of the endpoint model named "service". The prediction result was [1, 0] which indicates that only the first patient has diabetes. 
 
 ```
 data = [{
@@ -190,7 +180,7 @@ data = [{
    output = service.run(input_data)
    print(output)
 ```
-
+![](screenshots/automl_model_test.png)
 ## Screen Recording
 
 

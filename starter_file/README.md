@@ -13,10 +13,9 @@
 ## Overview
 The dataset utilized in this project was sourced from the National Institute of Diabetes and Digestive and Kidney Diseases. The goal is to forecast whether a patient has diabetes based on specific diagnostic measurements. Two models were developed for this project: one using AutoML and another employing hyperparameters tuned through the HyperDrive model with a LogisticRegression classifier. Subsequently, we assessed the performance of both models, deploying the one with the superior performance and integrating it for consumption.
 
-![](Screenshots/steps.png)
 ###### Source: (https://medium.com/microsoftazure/9-advanced-tips-for-production-machine-learning-6bbdebf49a6f)
 
-The AutoML experiment has a 78% accuracy while the HyperDrive experiment gave a 77%. Hence the AutoML model was registered as the best model and deployed as a web service. 
+The AutoML experiment has a 78.39% accuracy while the HyperDrive experiment gave a 77.08%. Hence the AutoML model was registered as the best model and deployed as a web service. 
 
 
 ## Project Set Up and Installation
@@ -62,7 +61,7 @@ The AutoML experiment has a 78% accuracy while the HyperDrive experiment gave a 
 
 The dataset comprises records of females aged 21 and older from Pima Indian heritage, totaling 768 entries. The primary goal is to predict the presence or absence of diabetes in patients based on specific diagnostic measurements, with features including the number of pregnancies, plasma glucose concentration, diastolic blood pressure, skinfold thickness, serum insulin levels, body mass index, diabetes pedigree function, age, and the target column "Outcome" indicating diabetes (1) or not (0). The dataset, available at https://www.kaggle.com/mathchi/diabetes-data-set, was downloaded from Kaggle, uploaded, and registered in the workspace using the 'upload from local file' option in the ML Studio GUI Datasets tab. It is registered as 'diabetes_data_set' and accessed through the 'Dataset_get_by_name(ws, dataset_name)' command in both notebooks, facilitating consumption via the Python SDK. The task involves predicting the "Outcome" column based on the given input features.
 
-![](Screenshots/registerd-dataset.png)
+![](screenshots/dataset.png)
 
 ## Automated ML
 Overview of the `automl` settings and configuration used for this experiment:
@@ -83,15 +82,14 @@ Overview of the `automl` settings and configuration used for this experiment:
 ### Results
 The best model has resulted from the AutoML experiment from VotingEnsemble model. The Voting Ensemble model takes a majority vote of several algorithms which makes it surpass individual algorithms and minimize the bias. The best model has a 78.39% accuracy rate. 
 
-![](Screenshots/automl-models.png)
+![](screenshots/automl_best_model.png)
 
 #### `RunDetails` widget of best model screenshot 
-![](Screenshots/automl_run_dtl_p1.png)
-
-![](Screenshots/automl-matix.png)
+![](screenshots/auto_ml_widget.png)
 
 #### Best model run id screenshot
-![](Screenshots/automl-registered-model.png)
+We can get the RunID from the provided notebook or simply look in the model section, after we registered our model.
+![](screenshots/model_run_ids.png)
 
 ### How to improve the project in the future:
 - Interchange n_cross_validations value between (2 till 7) and see if the prediction accuracy improved by tuning this parameter. 

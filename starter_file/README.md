@@ -172,7 +172,7 @@ data = [{
 ```
 ![](screenshots/automl_model_test.png)
 ## Screen Recording
-![Link to screencast](https://www.youtube.com/watch?v=KkD5T8_6C68)
+[Link to screencast](https://www.youtube.com/watch?v=KkD5T8_6C68)
 
 ## Standout Suggestions
 *TODO (Optional):* This is where you can provide information about any standout suggestions that you have attempted.

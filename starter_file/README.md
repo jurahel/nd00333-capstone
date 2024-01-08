@@ -11,39 +11,52 @@
 * [References](#references)
 
 ## Overview
-The used dataset originally has been taken from the National Institute of Diabetes and Digestive and Kidney Diseases. The objective of the project is to predict if a patient has diabetes or not by evaluating certain diagnostic measurements. In this project, we have created two models: one using AutoML and one using hyperparameters tuned using HyperDrive model with LogisticRegression classifier. Then, we compared the performance of both the models and deploy the best performing model and consume it.
+The dataset utilized in this project was sourced from the National Institute of Diabetes and Digestive and Kidney Diseases. The goal is to forecast whether a patient has diabetes based on specific diagnostic measurements. Two models were developed for this project: one using AutoML and another employing hyperparameters tuned through the HyperDrive model with a LogisticRegression classifier. Subsequently, we assessed the performance of both models, deploying the one with the superior performance and integrating it for consumption.
 
 ![](Screenshots/steps.png)
 ###### Source: (https://medium.com/microsoftazure/9-advanced-tips-for-production-machine-learning-6bbdebf49a6f)
 
-The AutoML experiment has a 78.39% accuracy while the HyperDrive experiment gave a 74.4%. The AutoML model exceeded the HyperDrive performance by 3.99%, Hence was registered as the best model and deployed as a web service. 
+The AutoML experiment has a 78% accuracy while the HyperDrive experiment gave a 77%. Hence the AutoML model was registered as the best model and deployed as a web service. 
 
 
 ## Project Set Up and Installation
 
-To run the project, follow the steps below:
+### AutoML Experiment in 'automl.ipynb' Notebook:
 
-- Upload notebooks to the AzureML workspace.
-- Create a new compute instance to run the notebook script, STANDARD_DS2_V12 was selected.
-- Create a cpu compute cluster of type STANDARD_DS12_V2 with 4 max nodes, and low priority status to train the model.
-- Registered Kaggle dataset to the workspace under the name "diabetes_data_set", and retrieved it later in the ML experiment.
+1. **Upload Notebooks:** Begin by uploading the necessary notebooks to the AzureML workspace.
 
-- Run the AutoML experiment through 'automl.ipynb' notebook as follow: 
-  - Load the ws, dataset, compute cluster.
-  - Create a new experiment named 'automl-exp'.
-  - Add the AutoML settings and configuration information, then submit the experiment to train the model.
-  - Use the RunDetails widget to show experiment details such as the runs accuracy rate.
-  - Retrive the best model and registerd it in the workspace.
-  - Deploy the best model as a web service using Inference & deployment configuration settings. 
-  - Test the endpoint by sending json payload and receive a response.
-  - Enable the application insights and service logs.
+2. **Compute Instance:** Create a new compute instance
 
-- Run the HyperDrive experiment through 'hyperparameter_tuning.ipynb' notebook as follow: 
-  - Load the ws, dataset, compute cluster.
-  - Create a new experiment named 'hyperdrive_exp'.
-  - Define early termination policy, Random Parameter Sampling  hyperparmenter and config settings. 
-  - Create 'train.py' script to be used in training the model, then submit the experiment.
-  - Use the RunDetails widget to show experiment details such as the runs accuracy rate.
+3. **Compute Cluster:** Set up a CPU compute cluster for model training.
+
+4. **Dataset Registration:** Register the Kaggle dataset as "diabetes_data_set" in the workspace and retrieve it later in the ML experiment.
+
+5. **Experiment Execution:**
+   - Load the workspace, dataset, and compute cluster.
+   - Create a new experiment named 'automl-exp.'
+   - Configure AutoML settings and information.
+   - Submit the experiment to train the model.
+   - Utilize the RunDetails widget to display experiment details, including accuracy rates of the runs.
+   - Retrieve and register the best model in the workspace.
+   - Deploy the best model as a web service using Inference & deployment configuration settings.
+   - Test the endpoint by sending a JSON payload and receiving a response.
+   - Enable application insights and service logs.
+
+### HyperDrive Experiment in 'hyperparameter_tuning.ipynb' Notebook:
+
+1. **Load Dependencies:** Load the necessary components, including the workspace, dataset, and compute cluster.
+
+2. **Experiment Setup:**
+   - Create a new experiment named 'hyperdrive_exp.'
+   - Define an early termination policy.
+   - Utilize Random Parameter Sampling for hyperparameter tuning.
+   - Configure experiment settings.
+
+3. **Training Script:** Develop the 'train.py' script for training the model.
+
+4. **Experiment Execution:**
+   - Submit the HyperDrive experiment.
+   - Use the RunDetails widget to visualize experiment details, such as accuracy rates of the runs.
 
 ## Dataset
 

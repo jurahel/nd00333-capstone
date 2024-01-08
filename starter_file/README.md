@@ -61,20 +61,7 @@ The dataset comprises records of females aged 21 and older from Pima Indian heri
 ![](screenshots/dataset.png)
 
 ## Automated ML
-Overview of the `automl` settings and configuration used for this experiment:
-
-- "experiment_timeout_minutes": set to 30 minutes. The experiment will timeout after that period to avoid wasting resources.
-- "max_concurrent_iterations": is set to 30. The max number of concurrent iterations to be run in parallel at the same time.
-- "primary_metric" :  is set to 'accuracy', which is a sutible metric for classification problems. 
-- "n_cross_validations": is set to 5, therefore the training and validation sets will be divided into five equal sets.
-- "iterations": the number of iterations for the experiment is set to 20. It's a reasonable number and would provide the intendable result for the given dataset.
-- compute_target: set to the project cluster to run the experiment.
-- task: set to 'classification' since our target to predict whether the patient has diabetes or not.
-- training_data: the loaded dataset for the project.
-- label_column_name: set to the result/target colunm in the dataset 'Outcome' (0 or 1).
-- enable_early_stopping: is enabled to terminate the experiment if the accuracy score is not showing improvement over time.
-- featurization = is set to 'auto', it's an indicator of whether implementing a featurization step to preprocess/clean the dataset automatically or not. In our case, the preprocessing was applied for the numerical columns which normally involve treating missing values, cluster distance, the weight of evidence...etc.
-- debug_log: errors will be logged into 'automl_errors.log'. 
+In this experiment, the AutoML settings and configurations have been carefully selected to optimize the model training process. The **experiment_timeout_minutes** is set to 30 minutes to prevent unnecessary resource consumption. **max_concurrent_iterations** is configured to 30 to enhance computational efficiency by allowing a maximum of 30 iterations to run concurrently. The **primary_metric** is chosen as 'accuracy,' a fitting metric for classification problems and the key evaluation criterion for model performance. **n_cross_validations** is set to 5, ensuring the dataset is divided into five equal sets during cross-validation for robust evaluation. The number of iterations for the experiment is set to 20 with **iterations**, a reasonable value expected to yield meaningful insights. The **compute_target** is aligned with the project cluster for efficient execution. With the task of predicting whether a patient has diabetes or not, **task** is set to 'classification.' **training_data** refers to the loaded dataset, forming the basis for model training. **label_column_name** is set to 'Outcome,' representing the target column with values 0 or 1. Enabling **early_stopping** terminates the experiment if the accuracy score shows no improvement over time, optimizing resource utilization. **Featurization** is set to 'auto,' indicating an automated preprocessing step for numerical columns. Any errors during the process are logged into 'automl_errors.log' with **debug_log**, facilitating the identification and resolution of issues encountered during AutoML execution.
 
 ### Results
 The best model has resulted from the AutoML experiment from VotingEnsemble model. The Voting Ensemble model takes a majority vote of several algorithms which makes it surpass individual algorithms and minimize the bias. The best model has a 78.39% accuracy rate. 

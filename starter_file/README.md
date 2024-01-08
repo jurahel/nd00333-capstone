@@ -143,6 +143,8 @@ service.wait_for_deployment(show_output=True)
 ```
 ![](screenshots/auto_ml_deploy_succeeded.png)
 
+The deployment finished successfully and we see the endpoint is healthy.
+
 #### Test the model
 In order to test the model we copy the code from the ´Consume´ of a deployed model. There we choose the python code and get everything we need to test our model. 
 
@@ -182,7 +184,7 @@ data = [{
 ```
 ![](screenshots/automl_model_test.png)
 ## Screen Recording
-
+![Link to screencast](https://www.youtube.com/watch?v=KkD5T8_6C68)
 
 ## Standout Suggestions
 *TODO (Optional):* This is where you can provide information about any standout suggestions that you have attempted.

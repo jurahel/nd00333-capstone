@@ -76,7 +76,7 @@ We can get the RunID from the provided notebook or simply look in the model sect
 ![](screenshots/model_run_ids.png)
 
 ### Closer Look at the best model
-The voting ensemble consists of 9 models with different preprocessing steps (scalers and normalizers) followed by various models. In the screenshot we see Random Forests,, Logistic Regression, XGB Models, LightGBM and Extreme Random Forests. All their classifications are weighted and combined for the final prediction. We see that the first ensemble part consisting of the ´StandardScalerWrapper´ and ´RandomForest´ has a model weight of roughly 0.077.
+The voting ensemble consists of 9 models with different preprocessing steps (scalers and normalizers) followed by various models. In the screenshot we see Random Forests,, Logistic Regression, XGB Models, LightGBM and Extreme Random Forests. All their classifications are weighted and combined for the final prediction. We see that the first ensemble part consisting of the 'StandardScalerWrapper' and 'RandomForest' has a model weight of roughly 0.077.
 ![](screenshots/automl_best_model_details.png)
 
 The model consists

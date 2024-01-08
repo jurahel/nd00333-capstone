@@ -60,26 +60,7 @@ The AutoML experiment has a 78% accuracy while the HyperDrive experiment gave a 
 
 ## Dataset
 
-### Overview
-The dataset collects the records of females patients of age 21 and older from Pima Indian heritage. The dataset has a total of 768 entries. The objective is to predict if a patient has diabetes or not by evaluating certain diagnostic measurements.
-https://www.kaggle.com/mathchi/diabetes-data-set
-
-### Task
-Predict the "Outcome" column based on the input features, either the patient has diabetes or not. 
-
-The dataset has nine features as follow:
-- Pregnancies: Number pregnancy times (int).
-- Glucose: Plasma glucose concentration level (int). 
-- BloodPressure: Diastolic blood pressure level in mm Hg(int).
-- SkinThickness: skinfold thickness in mm(int).
-- Insulin: two-hour serum insulin measured by mu U/ml(int).
-- BMI: Body mass index(float).
-- DiabetesPedigreeFunction: Diabetes pedigree function(float).
-- Age: age in years 21 and above(int).
-- Outcome: Target column 0 or 1, 0 = Not diabetes, 1 = diabetes(int).
-
-### Access
-The dataset was downloaded from kaggle then uploaded/registered in the workspace through 'upload from local file' option in the ML Studio GUI Datasets tab. The dataset was registered with the name 'diabetes_data_set' and could be accessed via 'Dataset_get_by_name(ws,dataset_name)' command. It was consumed by both notebooks using Python SDK.
+The dataset comprises records of females aged 21 and older from Pima Indian heritage, totaling 768 entries. The primary goal is to predict the presence or absence of diabetes in patients based on specific diagnostic measurements, with features including the number of pregnancies, plasma glucose concentration, diastolic blood pressure, skinfold thickness, serum insulin levels, body mass index, diabetes pedigree function, age, and the target column "Outcome" indicating diabetes (1) or not (0). The dataset, available at https://www.kaggle.com/mathchi/diabetes-data-set, was downloaded from Kaggle, uploaded, and registered in the workspace using the 'upload from local file' option in the ML Studio GUI Datasets tab. It is registered as 'diabetes_data_set' and accessed through the 'Dataset_get_by_name(ws, dataset_name)' command in both notebooks, facilitating consumption via the Python SDK. The task involves predicting the "Outcome" column based on the given input features.
 
 ![](Screenshots/registerd-dataset.png)
 
@@ -87,7 +68,7 @@ The dataset was downloaded from kaggle then uploaded/registered in the workspace
 Overview of the `automl` settings and configuration used for this experiment:
 
 - "experiment_timeout_minutes": set to 30 minutes. The experiment will timeout after that period to avoid wasting resources.
-- "max_concurrent_iterations": is set to 4. The max number of concurrent iterations to be run in parallel at the same time.
+- "max_concurrent_iterations": is set to 30. The max number of concurrent iterations to be run in parallel at the same time.
 - "primary_metric" :  is set to 'accuracy', which is a sutible metric for classification problems. 
 - "n_cross_validations": is set to 5, therefore the training and validation sets will be divided into five equal sets.
 - "iterations": the number of iterations for the experiment is set to 20. It's a reasonable number and would provide the intendable result for the given dataset.

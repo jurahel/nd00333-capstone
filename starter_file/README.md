@@ -1,5 +1,5 @@
 
-# Capstone Project: Diabetes prediction
+# Capstone Project
 
 ## Table of content
 * [Overview](#overview)
@@ -13,10 +13,7 @@
 ## Overview
 The dataset utilized in this project was sourced from the National Institute of Diabetes and Digestive and Kidney Diseases. The goal is to forecast whether a patient has diabetes based on specific diagnostic measurements. Two models were developed for this project: one using AutoML and another employing hyperparameters tuned through the HyperDrive model with a LogisticRegression classifier. Subsequently, we assessed the performance of both models, deploying the one with the superior performance and integrating it for consumption.
 
-###### Source: (https://medium.com/microsoftazure/9-advanced-tips-for-production-machine-learning-6bbdebf49a6f)
-
 The AutoML experiment has a 78.39% accuracy while the HyperDrive experiment gave a 77.08%. Hence the AutoML model was registered as the best model and deployed as a web service. 
-
 
 ## Project Set Up and Installation
 

@@ -99,14 +99,11 @@ The best model has resulted from the AutoML experiment from VotingEnsemble model
 
 ## Hyperparameter Tuning
 
-I have chosen a LogisticRegression classifier model to train the HyperDrive experiment. Since our target is to predict classification problem result either 0 or 1. The model uses the probability of a certain class to occur. Logistic regression uses a logistic model function which is a form of binary regression. The model is trained using 'train.py' script. 
+For the HyperDrive experiment, I opted for a LogisticRegression classifier model, given the nature of our target as a classification problem with binary outcomes (0 or 1). Logistic regression proves effective in such scenarios, utilizing the probability of a particular class occurrence. The model employs a logistic model function, constituting a binary regression form, and is trained using the provided 'train.py' script.
 
-The used HyperDrive parameters: 
-- Parameter sampler 'RandomParameterSampling' holds the tuning hyperparameters (--C: Inverse of regularization, --max_iter: Maximum number of iterations) was passed to the HyperDriveConfig script.
-  - Discrete values with 'choice' have been used for both tuned parameters '--C' : choice(0.001,0.01,0.1,1.0,10.0,50.0,100,1000),
-        '--max_iter': choice(10,50). RandomParameterSampling has been selected due to its fast performance, simple approach, and would provide random unbiased search in the overall population. In addition, it gives satisfactory results and supports the early termination policy of low-performance runs which results in saving resources. Grid Sampling can be used for exhaustive search over the search space if the budget was not an issue.
-- Early termination policy has been added to the script then experiment submission.
-  - BanditPolicy has been used with the parameters evaluation_interval=2 and slack_factor=0.1 as an early stopping policy to improve the performance of the computational resources by automatically terminating poorly and delayed performing runs. Bandit Policy ends runs if the primary metric is not within the specified slack factor/amount when compared with the highest performing run.
+In configuring the HyperDrive experiment, I utilized the RandomParameterSampling for tuning hyperparameters, specifically '--C' (inverse of regularization) and '--max_iter' (maximum number of iterations). Discrete values, set as 'choice,' were assigned for both tuned parameters: '--C' with choices (0.001, 0.01, 0.1, 1.0, 10.0, 50.0, 100, 1000) and '--max_iter' with choices (10, 50). RandomParameterSampling was chosen for its swift performance, straightforward approach, and ability to provide a random, unbiased search in the overall parameter space. This approach is resource-efficient and supports the early termination policy for low-performance runs, saving computational resources. While Grid Sampling could offer an exhaustive search, the consideration of resource budget led to the selection of RandomParameterSampling.
+
+To enhance resource utilization further, an early termination policy was incorporated into the experiment submission. BanditPolicy was employed with parameters evaluation_interval=2 and slack_factor=0.1, serving as an early stopping policy to automatically terminate underperforming and delayed runs. The Bandit Policy concludes runs if the primary metric falls outside the specified slack factor compared to the highest-performing run, contributing to improved computational efficiency.
 
 ### Results
 The best performing model has a 74.4% accuracy rate with --C = 50 and --max_iter = 50. 
@@ -125,13 +122,14 @@ The best performing model has a 74.4% accuracy rate with --C = 50 and --max_iter
 
 
 ### How to improve the project in the future:
-- Try a uniform range between 1 and 5 for regularisation (--C) to see the overall improvement in the performance and generalization capability.
-- Increase the number of --max_iter to cover 100 and 150 and evaluate the impact of tuning the iterations on the model performance.
-- Consider using XGBoost, and LightGBM models for the experiment and explore more Hyper Parameters options to tune.
-- Try Median stopping, and Truncation selection early termination policies. Median stopping terminates runs based on the running averages of primary metrics. Thus, computing all training runs averages and eliminate the worse runs.
+In refining the experiment, I recommend exploring the impact of regularization by trying a uniform range between 1 and 5 for the '--C' parameter. This will provide insights into the overall improvement in performance and the model's generalization capability. Additionally, consider extending the range for '--max_iter' to cover values such as 100 and 150, assessing how tuning the number of iterations affects the model's performance.
+
+To diversify the experimentation, contemplate incorporating XGBoost and LightGBM models into the mix. Explore a broader range of hyperparameter options for these models to fine-tune their performance. This can offer a more comprehensive understanding of the models' behavior under various configurations.
+
+For early termination policies, experiment with Median stopping and Truncation selection. Median stopping terminates runs based on the running averages of primary metrics, computing averages across all training runs and eliminating the worse-performing runs. This strategy can help improve efficiency by focusing resources on more promising configurations. Evaluate the effectiveness of these policies in enhancing the overall efficiency and effectiveness of the experiment.
 
 ## Model Deployment
-The AutoML experiment has a 78.39% accuracy while the HyperDrive experiment gave a 74.4%. The AutoML model exceeded the HyperDrive performance by 3.99%, Hence was registered as the best model and deployed as a web service. The application insights was enabled.
+The AutoML experiment has a 78% accuracy while the HyperDrive experiment gave a 77%. The AutoML model exceeded the HyperDrive performance. Hence was registered as the best model and deployed as a web service. The application insights was enabled.
 
 Also, we have created inference configuration and edited deploy configuration settings for the deployment. The inference configuration and settings explain the set up of the web service that will include the deployed model. Environment settings and scoring.py script file should be passed the InferenceConfig. The deployed model was configured in Azure Container Instance(ACI) with cpu_cores and memory_gb parameters initialized as 1. 
 
@@ -194,35 +192,9 @@ data = [{
    output = service.run(input_data)
    print(output)
 ```
-#### Endpoint Result
-![](Screenshots/input-json-payload.png)
-
-![](Screenshots/json-response.png)
-
-The endpoint result can be run by 'endpoint.py' script. The script can be executed using 'python endpoint.py' command to receive the prediction. 
-![](Screenshots/endpoint-py.png)
 
 ## Screen Recording
-A link to a screen recording of the project is [Click Here](https://www.loom.com/share/431c6a9c7ef64fc5927f4b9248c9e6cb)
-- A working model
-- Demo of the deployed  model
-- Demo of a sample request sent to the endpoint and its response
+
 
 ## Standout Suggestions
 *TODO (Optional):* This is where you can provide information about any standout suggestions that you have attempted.
-
-## References
-- Udacity Nanodegree Content.
-- https://docs.microsoft.com/en-us/azure/machine-learning/tutorial-power-bi-custom-model
-- https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-existing-model
-- https://docs.microsoft.com/en-us/azure/machine-learning/how-to-use-environments
-- https://docs.microsoft.com/en-us/azure/machine-learning/tutorial-1st-experiment-bring-data
-- https://docs.microsoft.com/en-us/azure/machine-learning/resource-curated-environments
-- https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-and-where?tabs=python#define-an-entry-script
-- https://docs.microsoft.com/en-us/azure/machine-learning/how-to-enable-app-insights
-- https://docs.microsoft.com/en-us/python/api/azureml-train-automl-client/azureml.train.automl.automlconfig.automlconfig?view=azure-ml-py
-- https://en.wikipedia.org/wiki/Logistic_regression
-- https://docs.microsoft.com/en-us/azure/machine-learning/how-to-tune-hyperparameters
-- https://docs.microsoft.com/en-us/azure/machine-learning/concept-ml-pipelines
-- https://docs.microsoft.com/en-us/python/api/azureml-train-automl-client/azureml.train.automl.automlconfig.automlconfig?view=azure-ml-py
-- https://medium.com/microsoftazure/9-advanced-tips-for-production-machine-learning-6bbdebf49a6f

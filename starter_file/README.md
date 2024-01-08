@@ -75,6 +75,11 @@ The best model has resulted from the AutoML experiment from VotingEnsemble model
 We can get the RunID from the provided notebook or simply look in the model section, after we registered our model.
 ![](screenshots/model_run_ids.png)
 
+### Closer Look at the best model
+The voting ensemble consists of 9 models with different preprocessing steps (scalers and normalizers) followed by various models. In the screenshot we see Random Forests,, Logistic Regression, XGB Models, LightGBM and Extreme Random Forests. All their classifications are weighted and combined for the final prediction. We see that the first ensemble part consisting of the ´StandardScalerWrapper´ and ´RandomForest´ has a model weight of roughly 0.077.
+![](screenshots/automl_best_model_details.png)
+
+The model consists
 ### How to improve the project in the future:
 - Interchange n_cross_validations value between (2 till 7) and see if the prediction accuracy improved by tuning this parameter. 
 - Increase the number of iterations this could lead to more improved results by testing more machine learning algorithms and run the experiment using them. 
@@ -96,7 +101,6 @@ The best performing model has a 77.08% accuracy rate with --C = 1 and --max_iter
 #### Best model run id screenshot
 As before, we take a look at the registered models to get the `RunID`
 ![](screenshots/model_run_ids.png)
-
 
 ### How to improve the project in the future:
 In enhancing the experiment, consider delving into the impact of regularization by experimenting with a uniform range between 1 and 5 for the '--C' parameter. This exploration aims to unveil insights into the overall enhancement of performance and the model's ability to generalize. Additionally, broaden the scope for the '--max_iter' parameter, encompassing values such as 100 and 150, to evaluate how fine-tuning the number of iterations influences the model's performance.
